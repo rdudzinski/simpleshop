@@ -1,0 +1,43 @@
+{% extends '@Shop/base.html.twig' %}
+
+{% block content_content %}
+    <div class="well well-sm">
+        <h3>Products list</h3>
+    </div>
+    <a class="btn btn-primary" href="{{ path('product_new') }}">Create a new product</a>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th{% if products.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(products, 'Id', 'product.id') }}</th>
+                <th{% if products.isSorted('a.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(products, 'Name', 'product.name') }}</th>
+                <th>Description</th>
+                <th{% if products.isSorted('a.Price') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(products, 'Price', 'product.price') }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td><a href="{{ path('homepage_product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(products) }}
+    </div>
+{% endblock content_content %}
+
+

@@ -1,0 +1,42 @@
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+{% block head_style %}
+    {% stylesheets
+    '@MopaBootstrapBundle/Resources/public/bootstrap/dist/css/bootstrap.min.css'
+    '@MopaBootstrapBundle/Resources/public/bootstrap/dist/css/bootstrap-theme.min.css'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet"
+          media="screen" />
+    {% endstylesheets %}
+
+    {% javascripts
+    '@MopaBootstrapBundle/Resources/public/bootstrap/docs/assets/js/vendor/jquery.min.js'
+    '@MopaBootstrapBundle/Resources/public/bootstrap/dist/js/bootstrap.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body_tag %}
+<body lang="en">
+{% endblock body_tag %}
+
+{% block title %}Simple Shop{% endblock title %}
+
+{% block page_header %}
+<div class="page-header">
+    <h1>{% block headline %}<a href="{{ url('homepage') }}">Simple Shop</a>{% endblock headline %}</h1>
+</div>
+{% endblock page_header %}
+
+{% block content_sidebar %}
+<div class="well well-sm">
+    <h3>Sidebar</h3>
+    {% if app.user %}
+        <a class="btn btn-primary" href="{{ url('product_index') }}">Admin</a>
+        <a class="btn btn-primary" href="{{ url('logout') }}">Logout</a>
+    {% else %}
+        <a class="btn btn-primary" href="{{ url('product_index') }}">Login</a>
+    {% endif %}
+
+</div>
+{% endblock content_sidebar %}

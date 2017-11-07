@@ -1,0 +1,11 @@
+shop_product:
+    resource: "@AdminBundle/Controller/ProductController.php"
+    type:     annotation
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+logout:
+    path: /logout
+

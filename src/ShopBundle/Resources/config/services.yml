@@ -1,0 +1,4 @@
+services:
+    shop.new_product_message:
+        class: ShopBundle\Service\NewProductMessage
+        arguments: ["@service_container"]
