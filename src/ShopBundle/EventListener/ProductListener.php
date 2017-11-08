@@ -14,7 +14,7 @@ class ProductListener
         $this->container = $container;
     }
 
-    public function postPersisreret(LifecycleEventArgs $args)
+    public function postPersist(LifecycleEventArgs $args)
     {
         $this->run($args);
     }
