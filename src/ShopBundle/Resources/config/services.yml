@@ -2,3 +2,12 @@ services:
     shop.new_product_message:
         class: ShopBundle\Service\NewProductMessage
         arguments: ["@service_container"]
+    shop.product:
+        class: ShopBundle\Service\ProductService
+        arguments: ["@service_container"]
+
+    product.listener:
+        class: ShopBundle\EventListener\ProductListener
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+        arguments: ["@service_container"]

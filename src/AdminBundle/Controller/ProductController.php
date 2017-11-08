@@ -52,12 +52,7 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
-            $em->flush();
-
-            $shopMailer = $this->container->get('shop.new_product_message');
-            $shopMailer->sendMail();
+            $this->get('shop.product')->saveProduct($product);
 
             return $this->redirectToRoute('product_show', array('id' => $product->getId()));
         }
@@ -121,9 +116,7 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($product);
-            $em->flush();
+            $this->get('shop.product')->removeProduct($product);
         }
 
         return $this->redirectToRoute('product_index');
